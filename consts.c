@@ -1,0 +1,42 @@
+const char *SHELL_SETUP =
+    "zmodload 'zsh/parameter'\n"
+    "_skiff_elapsed=0\n"
+    "function _skiff_preexec() {\n"
+    "  _skiff_timer=$(($SECONDS))\n"
+    "}\n"
+    "function _skiff_precmd() {\n"
+    "  if [ $_skiff_timer ]; then\n"
+    "    _skiff_elapsed=$(($SECONDS - $_skiff_timer))\n"
+    "    PROMPT=$($HOME/.local/bin/skiff $? $_skiff_elapsed ${#jobstates})\n"
+    "      unset _skiff_timer\n"
+    "  fi\n"
+    "}\n"
+    "export PS2='∙ '\n"
+    "autoload -Uz add-zsh-hook\n"
+    "add-zsh-hook precmd _skiff_precmd\n"
+    "add-zsh-hook preexec _skiff_preexec\n"
+    "PROMPT=$($HOME/.local/bin/skiff $? $_skiff_elapsed ${#jobstates})\n";
+
+const unsigned LEVELS_DISPLAYED = 3;
+
+#define RED "%%{\x1b[31m%%}"
+#define GREEN "%%{\x1b[32m%%}"
+#define YELLOW "%%{\x1b[33m%%}"
+#define BLUE "%%{\x1b[34m%%}"
+#define MAGENTA "%%{\x1b[35m%%}"
+#define CYAN "%%{\x1b[36m%%}"
+#define RESET "%%{\x1b[0m%%}"
+#define BOLD "%%{\033[1m%%}"
+
+#define LOCKED_SYMBOL "🔒"
+#define PROMPT "❯ "
+#define GIT_BRANCH ""
+
+#define GIT_DELETED "✘"
+#define GIT_ADDED "+"
+#define GIT_MODIFIED "!"
+#define GIT_STASH "$"
+#define GIT_UNTRACKED "?"
+#define GIT_DIVERGE "⇕"
+#define GIT_BEHIND_REMOTE "⇣"
+#define GIT_AHEAD_REMOTE "⇡"
