@@ -52,10 +52,6 @@ int main(int argc, char *argv[]) {
 
     char *prepend = "/";   // str before the truncated dirs
     unsigned level = size; // how many levels of directory to show
-    if (level > 3) {
-        level = 3;
-        prepend = "";
-    }
 
     char *username = getlogin();
     if (username == NULL) {
@@ -67,13 +63,18 @@ int main(int argc, char *argv[]) {
         // cwd is under home
         if (size == 2) {
             prepend = "~";
+            level = 0;
         } else {
             prepend = "~/";
             level = size - 2;
         }
-        if (size < (2 + LEVELS_DISPLAYED)) {
+        if (size > (2 + LEVELS_DISPLAYED)) {
             level = size - 2;
         }
+    }
+    if (level > LEVELS_DISPLAYED) {
+        level = LEVELS_DISPLAYED;
+        prepend = "";
     }
 
     unsigned show_git_info = 0u;
