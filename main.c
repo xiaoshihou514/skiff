@@ -231,6 +231,7 @@ int main(int argc, char *argv[]) {
         // behind
         git_status |= (1u << 7);
     }
+
 PRINT_GIT_STATUS:
     print_git_info(git_status);
     git_repository_free(repo);

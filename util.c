@@ -22,9 +22,9 @@ void print_git_info(unsigned map) {
     if (map == 0) {
         return;
     }
-    char *git_info[] = {GIT_DELETED,       GIT_ADDED,       GIT_MODIFIED,
-                        GIT_STASH,         GIT_UNTRACKED,   GIT_DIVERGE,
-                        GIT_BEHIND_REMOTE, GIT_AHEAD_REMOTE};
+    char *git_info[] = {GIT_DELETED,      GIT_ADDED,        GIT_MODIFIED,
+                        GIT_STASH,        GIT_UNTRACKED,    GIT_DIVERGE,
+                        GIT_AHEAD_REMOTE, GIT_BEHIND_REMOTE};
     print_red_bold(" [");
     for (int i = 0; i < 8; i++) {
         if (map & (1u << i)) {
