@@ -140,13 +140,19 @@ int main(int argc, char *argv[]) {
     for (size_t i = 0; i < entry_count; i++) {
         const git_status_entry *entry = git_status_byindex(status, i);
         if (entry->index_to_workdir == NULL) {
+            // printf("\npath: null, status: %b, index_status: null\n",
+            //        entry->status);
             // GIT_ADDED "+"
-            if (entry->status == GIT_STATUS_INDEX_NEW) {
+            if (entry->status == GIT_STATUS_INDEX_MODIFIED) {
                 git_status |= (1u << 1);
             }
         } else {
             git_delta_t index_status = entry->index_to_workdir->status;
             git_status_t status = entry->status;
+            // printf("\npath: %s, status: %b, index_status: %u\n",
+            //        entry->index_to_workdir->new_file.path, entry->status,
+            //        index_status);
+
             if (status == GIT_STATUS_WT_DELETED &&
                 index_status == GIT_DELTA_DELETED) {
                 // GIT_DELETED "✘"
