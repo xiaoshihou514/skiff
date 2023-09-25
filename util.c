@@ -50,7 +50,10 @@ void print_time(int time) {
         printf(YELLOW BOLD "%dm" RESET, time / 60);
         time %= 60;
     }
-    printf(YELLOW BOLD "%ds " RESET, time);
+    if (time != 0) {
+        printf(YELLOW BOLD "%ds" RESET, time);
+    }
+    printf(" ");
 }
 void print_prompt(int exit_code) {
     if (exit_code == 0) {
