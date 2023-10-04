@@ -193,10 +193,9 @@ int main(int argc, char *argv[]) {
     strcat(local_name, "refs/heads/");
     strcat(local_name, branch_name);
     if (git_reference_name_to_id(&local_oid, repo, local_name) != 0) {
-        perror("failed to get id for local branch\n");
         git_repository_free(repo);
         free(local_name);
-        return 1;
+        goto PRINT_SECOND_ROW;
     }
 
     // string to query oid for remote name for this branch
