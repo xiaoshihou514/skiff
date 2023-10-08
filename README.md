@@ -2,13 +2,7 @@
 
 Homemade lightweight zsh prompt leveraging `libgit2`
 
-```shell
-skiff: foo/bar/baz on  main [✘!?]
-3s ❯
-
-foo/bar/baz 🔒
-[2] 1h3m22s ❯
-```
+![Preview](https://github.com/xiaoshihou514/skiff/assets/108414369/7454d84c-8a3c-4c7f-9e4b-0859b4db1396)
 
 ## Installation
 
