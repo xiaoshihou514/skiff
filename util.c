@@ -2,7 +2,7 @@
 #include <git2/oid.h>
 #include <stdio.h>
 
-void print_cwd(char *s) { printf(CYAN BOLD "%s" RESET, s); }
+void print_cwd(char *s) { printf(BLUE BOLD "%s" RESET, s); }
 
 void print_git_branch(const char *s) {
     printf(MAGENTA BOLD GIT_BRANCH " %s" RESET, s);
