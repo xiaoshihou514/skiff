@@ -115,15 +115,16 @@ int main(int argc, char *argv[]) {
     } else {
         free(prepend);
     }
-    printf(" on ");
     // get branch name
     git_reference *head_ref;
     if (git_repository_head(&head_ref, repo) != 0) {
-        perror("failed to get head ref\n");
+        print_git_branch("  ");
+        goto PRINT_SECOND_ROW;
         git_repository_free(repo);
         return 1;
     }
     const char *branch_name = git_reference_shorthand(head_ref);
+    printf(" on ");
     print_git_branch(branch_name);
     // get info about the staging area
     git_status_list *status;
