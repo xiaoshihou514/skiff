@@ -118,7 +118,7 @@ int main(int argc, char *argv[]) {
     // get branch name
     git_reference *head_ref;
     if (git_repository_head(&head_ref, repo) != 0) {
-        print_git_branch("  ");
+        printf(MAGENTA BOLD "  " RESET);
         goto PRINT_SECOND_ROW;
         git_repository_free(repo);
         return 1;
